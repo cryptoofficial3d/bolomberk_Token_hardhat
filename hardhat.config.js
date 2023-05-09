@@ -1,25 +1,24 @@
+require("@nomiclabs/hardhat-waffle");
+
+task("accounts" , "Prints the list of accounts" , async (taskArgs , hre) => {
+  const accounts = await hre.ethers.getSigners();
+
+  for (const account of accounts) {
+    console.log(account.address);
+  }
+});
+
+
+/**
+ * @type import('hardhat/config').HardhatUserConfig
+ */
+
 module.exports = {
-  solidity: "0.8.9",
+  solidity: "0.8.2",
+  networks: {
+    mumbai: {
+      url: "https://rpc-mumbai.maticvigil.com",
+      accounts: ["SET-private-key"]       // metamask private key
+    }
+  }
 };
-
-// // Go to https://infura.io, sign up, create a new API key
-// // in its dashboard, and replace "KEY" with it
-// const INFURA_API_KEY = "KEY";
-
-// // Replace this private key with your Sepolia account private key
-// // To export your private key from Coinbase Wallet, go to
-// // Settings > Developer Settings > Show private key
-// // To export your private key from Metamask, open Metamask and
-// // go to Account Details > Export Private Key
-// // Beware: NEVER put real Ether into testing accounts
-// const SEPOLIA_PRIVATE_KEY = "YOUR SEPOLIA PRIVATE KEY";
-
-// module.exports = {
-//   // ...rest of your config...
-//   networks: {
-//     sepolia: {
-//       url: `https://sepolia.infura.io/v3/${INFURA_API_KEY}`,
-//       accounts: [SEPOLIA_PRIVATE_KEY],
-//     },
-//   },
-// };
